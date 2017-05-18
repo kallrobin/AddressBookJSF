@@ -22,7 +22,9 @@
                     <p:outputPanel>
                         <h:outputText value="Search: " />
                         <p:inputText id="globalFilter" onkeyup="PF('contactTable').filter()" style="width:230px" placeholder="Enter keyword"/>
+                        <p:button outcome="addContact" value="Add Contact" icon="ui-icon-plus"/>
                     </p:outputPanel>
+
                 </f:facet>
 
                 <p:ajax event="rowEdit" listener="#{viewContactsController.onRowEdit}" update=":form:msgs" />

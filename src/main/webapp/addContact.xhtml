@@ -11,20 +11,23 @@
 </h:head>
 <h:body>
     <h:body>
-        <h:form method="post">
-            <h:outputLabel for="firstName" value="First name:"/>
-            <h:inputText id="firstName" value="#{viewContactsController.firstName}"/>
+        <h:form>
+            <h:panelGrid columns="2" id="grid">
+                <h:outputLabel for="firstName" value="First name:"/>
+                <p:inputText id="firstName" value="#{addContactService.firstName}" required="true"/>
 
-            <h:outputLabel for="lastName" value="Last name:"/>
-            <h:inputText id="lastName" value="#{viewContactsController.lastName}"/>
+                <h:outputLabel for="lastName" value="Last name:"/>
+                <p:inputText id="lastName" value="#{addContactService.lastName}" required="true"/>
 
-            <h:outputLabel for="phone" value="Phone:"/>
-            <h:inputText id="phone" value="#{viewContactsController.phone}"/>
+                <h:outputLabel for="phone" value="Phone:"/>
+                <p:inputText id="phone" value="#{addContactService.phone}" required="true"/>
 
-            <h:outputLabel for="address" value="Address:"/>
-            <h:inputText id="address" value="#{viewContactsController.address}"/>
+                <h:outputLabel for="address" value="Address:"/>
+                <p:inputText id="address" value="#{addContactService.address}" required="true"/>
+            </h:panelGrid>
 
-            <h:commandButton value="Save" update="@this" action="#{viewContactsController.setContact(viewContactsController.contact)}"/>
+            <p:commandButton value="Save" update="grid" action="#{addContactService.addContact}"/>
+
         </h:form>
     </h:body>
 </h:body>
