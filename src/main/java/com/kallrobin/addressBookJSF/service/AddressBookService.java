@@ -1,7 +1,7 @@
-package services;
+package com.kallrobin.addressBookJSF.service;
 
-import fakeDB.FakeDB;
-import models.Contact;
+import com.kallrobin.addressBookJSF.fakeDB.FakeDB;
+import com.kallrobin.addressBookJSF.models.Contact;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -21,6 +21,10 @@ public class AddressBookService {
 
     public void addContact(Contact contact){
         db.addContact(contact);
+    }
+
+    public Contact getContact(long id) {
+        return db.getContact(id);
     }
 
     public void deleteContact(long id){

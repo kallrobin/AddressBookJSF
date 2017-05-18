@@ -15,8 +15,8 @@
 
             <p:growl id="msgs" showDetail="true"/>
 
-            <p:dataTable id="contacts" var="contact" value="#{viewContactsController.contacts}" widgetVar="contactTable"
-                         emptyMessage="No contacts could be found." filteredValue="#{viewContactsController.filteredContacts}" editable="true">
+            <p:dataTable id="contacts" var="contact" value="#{addressBookBean.contacts}" widgetVar="contactTable"
+                         emptyMessage="No contacts could be found." filteredValue="#{addressBookBean.filteredContacts}" editable="true">
 
                 <f:facet name="header">
                     <p:outputPanel>
@@ -27,8 +27,8 @@
 
                 </f:facet>
 
-                <p:ajax event="rowEdit" listener="#{viewContactsController.onRowEdit}" update=":form:msgs" />
-                <p:ajax event="rowEditCancel" listener="#{viewContactsController.onRowCancel}" update=":form:msgs" />
+                <p:ajax event="rowEdit" listener="#{addressBookBean.onRowEdit}" update=":form:msgs" />
+                <p:ajax event="rowEditCancel" listener="#{addressBookBean.onRowCancel}" update=":form:msgs" />
 
                 <p:column width="30" filterBy="#{contact.id}" headerText="Id" filterMatchMode="contains" filterStyle="width: 25px;">
                     <h:outputText value="#{contact.id}" />
@@ -62,12 +62,12 @@
                     </p:cellEditor>
                 </p:column>
 
-                <p:column style="width:32px">
+                <p:column style="width:30px">
                     <p:rowEditor />
                 </p:column>
 
                 <p:column style="width:50px">
-                    <p:commandLink action="#{viewContactsController.delete(contact)}" update="contacts">Delete</p:commandLink>
+                    <p:commandLink action="#{addressBookBean.delete(contact)}" update="contacts">Delete</p:commandLink>
                 </p:column>
             </p:dataTable>
         </h:form>

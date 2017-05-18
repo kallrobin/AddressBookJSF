@@ -1,9 +1,9 @@
-package controllers;
+package com.kallrobin.addressBookJSF.pagebean;
 
 
-import models.Contact;
+import com.kallrobin.addressBookJSF.models.Contact;
 import org.primefaces.event.RowEditEvent;
-import services.AddressBookService;
+import com.kallrobin.addressBookJSF.service.AddressBookService;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -16,7 +16,7 @@ import java.util.List;
 
 @Named
 @ViewScoped
-public class ViewContactsController implements Serializable{
+public class AddressBookBean implements Serializable{
 
     private List<Contact> contacts;
     private List<Contact> filteredContacts;

@@ -1,10 +1,10 @@
-package fakeDB;
+package com.kallrobin.addressBookJSF.fakeDB;
 
-import models.Contact;
+import com.kallrobin.addressBookJSF.models.Contact;
 
 
 import javax.annotation.PostConstruct;
-import javax.inject.Singleton;
+import javax.ejb.Singleton;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,5 +34,9 @@ public class FakeDB {
 
     public List<Contact> getAllContacts() {
         return contacts.values().stream().collect(Collectors.toList());
+    }
+
+    public Contact getContact(long id) {
+        return contacts.get(id);
     }
 }

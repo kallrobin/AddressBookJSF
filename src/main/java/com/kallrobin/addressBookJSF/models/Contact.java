@@ -1,4 +1,4 @@
-package models;
+package com.kallrobin.addressBookJSF.models;
 
 public class Contact {
     private long id;
