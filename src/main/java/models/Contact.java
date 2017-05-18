@@ -1,27 +1,24 @@
 package models;
 
-import java.util.UUID;
-
 public class Contact {
-    private String id;
+    private long id;
     private String firstName;
     private String lastName;
     private String address;
-    private int phone;
+    private String phone;
 
-    public Contact(String firstName, String lastName, String address, int phone) {
-        this.id = UUID.randomUUID().toString();
+    public Contact(String firstName, String lastName, String address, String phone) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
         this.phone = phone;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -49,11 +46,11 @@ public class Contact {
         this.address = address;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 }

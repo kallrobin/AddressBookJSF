@@ -11,44 +11,62 @@
 </h:head>
 <h:body>
     <h:body>
-        <h:form method="post">
-            <h:outputLabel for="firstName" value="First name:"/>
-            <h:inputText id="firstName" value="#{contactController.firstName}"/>
+        <h:form id="form">
 
-            <h:outputLabel for="lastName" value="Last name:"/>
-            <h:inputText id="lastName" value="#{contactController.lastName}"/>
+            <p:growl id="msgs" showDetail="true"/>
 
-            <h:outputLabel for="phone" value="Phone:"/>
-            <h:inputText id="phone" value="#{contactController.phone}"/>
+            <p:dataTable id="contacts" var="contact" value="#{viewContactsController.contacts}" widgetVar="contactTable"
+                         emptyMessage="No contacts could be found." filteredValue="#{viewContactsController.filteredContacts}" editable="true">
 
-            <h:outputLabel for="address" value="Address:"/>
-            <h:inputText id="address" value="#{contactController.address}"/>
-
-            <h:commandButton value="Save" update="@this" action="#{contactController.setContact(contactController.contact)}"/>
-        </h:form>
-
-        <h:form id="showform">
-            <p:dataTable id="singleDT" var="contact" value="#{contactController.contacts}" selectionMode="single" selection="#{contactController.contact}" rowKey="#{contactController.contact.id}">
-                <!-- Om vi vill anropa dtSelectionView direkt när vi väljer i listan måste vi skapa ett ajaxevent på raden -->
-                <p:ajax event="rowSelect" update="@this" />
                 <f:facet name="header">
-                    Single with Row Click
+                    <p:outputPanel>
+                        <h:outputText value="Search: " />
+                        <p:inputText id="globalFilter" onkeyup="PF('contactTable').filter()" style="width:230px" placeholder="Enter keyword"/>
+                    </p:outputPanel>
                 </f:facet>
-                <p:column headerText="First Name">
-                    <h:outputText value="${contact.firstName}" />
+
+                <p:ajax event="rowEdit" listener="#{viewContactsController.onRowEdit}" update=":form:msgs" />
+                <p:ajax event="rowEditCancel" listener="#{viewContactsController.onRowCancel}" update=":form:msgs" />
+
+                <p:column width="30" filterBy="#{contact.id}" headerText="Id" filterMatchMode="contains" filterStyle="width: 25px;">
+                    <h:outputText value="#{contact.id}" />
                 </p:column>
-                <p:column headerText="Last Name">
-                    <h:outputText value="${contact.lastName}" />
+
+                <p:column filterBy="#{contact.firstName}" headerText="First Name" filterMatchMode="contains">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{contact.firstName}" /></f:facet>
+                        <f:facet name="input"><p:inputText value="#{contact.firstName}" style="width:100%" id="fistNameInput"/></f:facet>
+                    </p:cellEditor>
                 </p:column>
-                <p:column headerText="Phone">
-                    <h:outputText value="${contact.phone}" />
+
+                <p:column filterBy="#{contact.lastName}" headerText="Last Name" filterMatchMode="contains">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{contact.lastName}" /></f:facet>
+                        <f:facet name="input"><p:inputText value="#{contact.lastName}" style="width:100%" id="lastNameInput"/></f:facet>
+                    </p:cellEditor>
                 </p:column>
-                <p:column headerText="Address">
-                    <h:outputText value="${contact.address}" />
+
+                <p:column filterBy="#{contact.address}" headerText="Address" filterMatchMode="contains">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{contact.address}" /></f:facet>
+                        <f:facet name="input"><p:inputText value="#{contact.address}" style="width:100%" id="addressInput"/></f:facet>
+                    </p:cellEditor>
                 </p:column>
-                <f:facet name="footer">
-                    <p:commandButton process="singleDT" update="@this" icon="ui-icon-search" action="#{contactController.setContact(contact)}" value="Trigga val"  />
-                </f:facet>
+
+                <p:column filterBy="#{contact.phone}" headerText="Phone" filterMatchMode="contains">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{contact.phone}" /></f:facet>
+                        <f:facet name="input"><p:inputText value="#{contact.phone}" style="width:100%" id="phoneInput"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                <p:column style="width:32px">
+                    <p:rowEditor />
+                </p:column>
+
+                <p:column style="width:50px">
+                    <p:commandLink action="#{viewContactsController.delete(contact)}" update="contacts">Delete</p:commandLink>
+                </p:column>
             </p:dataTable>
         </h:form>
     </h:body>

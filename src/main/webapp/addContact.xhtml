@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Contact</title>
+</h:head>
+<h:body>
+    <h:body>
+        <h:form method="post">
+            <h:outputLabel for="firstName" value="First name:"/>
+            <h:inputText id="firstName" value="#{viewContactsController.firstName}"/>
+
+            <h:outputLabel for="lastName" value="Last name:"/>
+            <h:inputText id="lastName" value="#{viewContactsController.lastName}"/>
+
+            <h:outputLabel for="phone" value="Phone:"/>
+            <h:inputText id="phone" value="#{viewContactsController.phone}"/>
+
+            <h:outputLabel for="address" value="Address:"/>
+            <h:inputText id="address" value="#{viewContactsController.address}"/>
+
+            <h:commandButton value="Save" update="@this" action="#{viewContactsController.setContact(viewContactsController.contact)}"/>
+        </h:form>
+    </h:body>
+</h:body>
+</html>
